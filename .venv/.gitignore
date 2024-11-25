@@ -1,0 +1,6 @@
+# created by virtualenv automatically
+*.venv/
+*.pyc
+__pycache__/
+firebase_credentials.json
+

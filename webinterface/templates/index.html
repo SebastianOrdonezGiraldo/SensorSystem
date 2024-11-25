@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monitoreo de Sensores</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Consulta de Datos del Sensor</h2>
+
+        <!-- Sección informativa -->
+        <div class="alert alert-info" role="alert">
+            <h5>Descripción de los Datos del Sensor</h5>
+            <p>Los datos que se pueden consultar corresponden a las mediciones de calidad del aire realizadas por el sensor seleccionado. A continuación se describen los parámetros disponibles:</p>
+            <ul>
+                <li><strong>PM2.5:</strong> Concentración de partículas finas menores a 2.5 micras (µg/m³). Estas partículas son peligrosas para la salud al poder penetrar profundamente en los pulmones.</li>
+                <li><strong>PM10:</strong> Concentración de partículas menores a 10 micras (µg/m³). Este tipo de partículas también es dañino, aunque no tanto como PM2.5.</li>
+                <li><strong>CO2:</strong> Concentración de dióxido de carbono en el ambiente (ppm). Altos niveles de CO2 pueden causar malestar y afectar la capacidad cognitiva.</li>
+                <li><strong>CO:</strong> Concentración de monóxido de carbono (ppm). Este gas es tóxico en concentraciones elevadas y debe monitorearse cuidadosamente.</li>
+                <li><strong>VOC:</strong> Compuestos orgánicos volátiles (ppm). Los VOC provienen de materiales sintéticos y son nocivos para la salud en grandes concentraciones.</li>
+            </ul>
+            <p>Ingrese el ID del sensor y la fecha deseada para consultar los datos registrados y visualizar las tendencias en gráficos interactivos.</p>
+        </div>
+
+        <!-- Formulario de consulta -->
+        <form id="consulta-form" class="border p-4 rounded shadow-sm">
+            <div class="form-group">
+                <label for="sensor-id">ID del Sensor:</label>
+                <input type="text" class="form-control" id="sensor-id" name="sensor-id" placeholder="Ingrese el ID del sensor">
+            </div>
+            <div class="form-group">
+                <label for="fecha">Fecha:</label>
+                <input type="date" class="form-control" id="fecha" name="fecha">
+            </div>
+            <button type="button" class="btn btn-primary btn-block" onclick="consultarDatos()">Consultar</button>
+        </form>
+
+        <div id="tabla-datos" class="mt-5"></div>
+        <div id="grafico" class="mt-4"></div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
