@@ -4,7 +4,7 @@ import time
 import datetime
 
 # URL de la API
-url = "http://127.0.0.1:5001/api/datos"
+url = "http://127.0.0.1:5000/api/datos"  # Cambié el puerto a 5000 para que coincida con tu código original de Flask
 
 # Generar y enviar datos periódicamente
 while True:
@@ -33,7 +33,13 @@ while True:
     try:
         # Enviar datos a la API mediante POST
         response = requests.post(url, json=data)
-        print(f"Datos enviados: {data}, Respuesta del servidor: {response.status_code}")
+
+        # Imprimir información de respuesta para depurar
+        if response.status_code == 200:
+            print(f"Datos enviados correctamente: {data}, Respuesta del servidor: {response.status_code}")
+        else:
+            print(f"Error al enviar datos. Código de estado: {response.status_code}, Respuesta: {response.text}")
+
     except Exception as e:
         print(f"Error al enviar datos: {e}")
 
